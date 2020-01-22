@@ -6,7 +6,7 @@
 /*   By: kbahrar <kbahrar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 19:42:26 by kbahrar           #+#    #+#             */
-/*   Updated: 2020/01/17 14:48:46 by kbahrar          ###   ########.fr       */
+/*   Updated: 2020/01/22 18:10:09 by kbahrar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,13 @@ char		*get_all_path(char *path)
 	int		len;
 
 	i = -1;
+	pwd = getenv("CDPATH");
+	if (pwd)
+	{
+		str = get_cdpath(pwd, path);
+		if (str)
+			return (str);
+	}
 	pwd = getenv("PWD");
 	if (pwd)
 	{
