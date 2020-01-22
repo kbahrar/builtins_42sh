@@ -6,7 +6,7 @@
 /*   By: kbahrar <kbahrar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 16:30:44 by kbahrar           #+#    #+#             */
-/*   Updated: 2020/01/13 15:05:56 by kbahrar          ###   ########.fr       */
+/*   Updated: 2020/01/22 17:45:37 by kbahrar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static int	ft_cd_p(char *path, char *pwd)
 		return (1);
 	else
 		chdir(path);
+	setenv("OLDPWD", getenv("PWD"), 1);
 	getcwd(pwd, 4096);
 	setenv("PWD", pwd, 1);
 	return (0);
@@ -71,6 +72,7 @@ static int	ft_cd_l(char *path, char *pwd)
 		return (1);
 	else
 		chdir(path);
+	setenv("OLDPWD", getenv("PWD"), 1);
 	pwd = ft_strcpy(pwd, path);
 	setenv("PWD", pwd, 1);
 	return (0);
@@ -78,7 +80,6 @@ static int	ft_cd_l(char *path, char *pwd)
 
 int			ft_cd(char **args)
 {
-	extern char	**environ;
 	int			opt[3];
 	int			i;
 	char		*pwd;
@@ -91,18 +92,17 @@ int			ft_cd(char **args)
 		return (1);
 	path = args[i];
 	if (!args[i] || (args[i][0] == '-' && args[i][1] == '\0'))
-		path = mod_path(path, environ);
+		path = mod_path(path);
 	if (opt[0] == 1)
 		ret = ft_cd_p(path, pwd);
 	else
 	{
 		if (path[0] == '.')
-			path = mod_point(path, environ);
+			path = mod_point(path);
 		if (path[0] != '/')
-			path = get_all_path(path, environ);
+			path = get_all_path(path);
 		ret = ft_cd_l(path, pwd);
 	}
 	ft_putendl(pwd);
-	free(pwd);
 	return (ret);
 }

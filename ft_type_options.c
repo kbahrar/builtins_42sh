@@ -6,7 +6,7 @@
 /*   By: kbahrar <kbahrar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 20:48:02 by kbahrar           #+#    #+#             */
-/*   Updated: 2019/12/30 17:02:41 by kbahrar          ###   ########.fr       */
+/*   Updated: 2020/01/20 14:44:53 by kbahrar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int			if_builtin(char *str)
 {
-	if (!ft_strcmp(str, "exit"))
+	if (!ft_strcmp(str, "exit") || !ft_strcmp(str, "fg"))
 		return (1);
-	else if (!ft_strcmp(str, "type"))
+	else if (!ft_strcmp(str, "type") || !ft_strcmp(str, "bg"))
 		return (1);
-	else if (!ft_strcmp(str, "cd"))
+	else if (!ft_strcmp(str, "cd") || !ft_strcmp(str, "fc"))
 		return (1);
-	else if (!ft_strcmp(str, "echo"))
+	else if (!ft_strcmp(str, "echo") || !ft_strcmp(str, "export"))
 		return (1);
 	else if (!ft_strcmp(str, "set"))
 		return (1);

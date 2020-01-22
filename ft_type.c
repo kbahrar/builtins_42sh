@@ -6,7 +6,7 @@
 /*   By: kbahrar <kbahrar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 18:56:58 by kbahrar           #+#    #+#             */
-/*   Updated: 2019/12/29 15:39:53 by kbahrar          ###   ########.fr       */
+/*   Updated: 2020/01/17 15:21:53 by kbahrar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ static int	ft_type_t(char *str, int ret)
 	{
 		str = access_file(environ, str);
 		if ((ft_strchr(str, '/')) && !access(str, F_OK))
+		{
+			free(str);
 			ft_putstr("file\n");
+		}
 		else
 			return (ret);
 	}
@@ -38,7 +41,10 @@ static int	ft_type_p(char *str, int opt, int a, int ret)
 			return (0);
 	str = access_file(environ, str);
 	if ((ft_strchr(str, '/')) && !access(str, F_OK))
+	{
+		free(str);
 		ft_putendl(str);
+	}
 	else
 		return (ret);
 	return (0);
@@ -61,6 +67,7 @@ static int	ft_type_a(char *str, int ret)
 		ft_putstr(cpy);
 		ft_putstr(" is ");
 		ft_putendl(str);
+		free(str);
 	}
 	else if (!if_builtin(str))
 	{
@@ -87,6 +94,7 @@ static int	ft_type_n(char *str, int ret)
 			ft_putstr_plus(cpy, " is ");
 			ft_putendl(str);
 			free(cpy);
+			free(str);
 		}
 		else
 		{

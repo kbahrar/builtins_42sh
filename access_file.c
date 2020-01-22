@@ -6,7 +6,7 @@
 /*   By: kbahrar <kbahrar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 19:33:36 by kbahrar           #+#    #+#             */
-/*   Updated: 2019/12/29 13:49:02 by kbahrar          ###   ########.fr       */
+/*   Updated: 2020/01/17 15:22:41 by kbahrar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ char	*access_file(char **env, char *file)
 		tmp = ft_pathjoin(paths[i], file);
 		if (access(tmp, F_OK) == 0)
 		{
-			// free(file);
 			free_paths(paths);
 			return (tmp);
 		}

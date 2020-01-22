@@ -6,39 +6,25 @@
 /*   By: kbahrar <kbahrar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 19:42:26 by kbahrar           #+#    #+#             */
-/*   Updated: 2020/01/12 21:07:19 by kbahrar          ###   ########.fr       */
+/*   Updated: 2020/01/17 14:48:46 by kbahrar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-char		*mod_path(char *path, char **env)
+char		*mod_path(char *path)
 {
 	int		i;
 	char	*var;
 
 	i = 0;
-	if (!path && env)
-	{
+	if (!path)
 		path = getenv("HOME");
-		// while (env[i])
-		// {
-		// 	if (ft_strstr(env[i], "HOME=") != NULL)
-		// 		path = ft_strchr(env[i], '/');
-		// 	i++;
-		// }
-	}
-	else if (env)
+	else
 	{
 		var = getenv("OLDPWD");
 		if (var)
 			path = var;
-		// while (env[i])
-		// {
-		// 	if (ft_strstr(env[i], "OLDPWD=") != NULL)
-		// 		path = ft_strchr(env[i], '/');
-		// 	i++;
-		// }
 	}
 	return (path);
 }
@@ -81,13 +67,12 @@ static char	*replace_2point(char *pwd, char *path)
 	return (str);
 }
 
-char		*mod_point(char *path, char **env)
+char		*mod_point(char *path)
 {
 	int		i;
 	char	*pwd;
 
 	i = 0;
-	(void)env;
 	pwd = getenv("PWD");
 	if (!pwd)
 		return (path);
@@ -100,7 +85,7 @@ char		*mod_point(char *path, char **env)
 	return (path);
 }
 
-char		*get_all_path(char *path, char **env)
+char		*get_all_path(char *path)
 {
 	int		i;
 	char	*pwd;
@@ -108,7 +93,6 @@ char		*get_all_path(char *path, char **env)
 	int		len;
 
 	i = -1;
-	(void)env;
 	pwd = getenv("PWD");
 	if (pwd)
 	{

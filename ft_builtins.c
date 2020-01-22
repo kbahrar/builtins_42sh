@@ -6,7 +6,7 @@
 /*   By: kbahrar <kbahrar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 17:56:56 by kbahrar           #+#    #+#             */
-/*   Updated: 2020/01/13 15:09:50 by kbahrar          ###   ########.fr       */
+/*   Updated: 2020/01/22 17:46:28 by kbahrar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,15 @@ static int	ft_exit(char **args)
 	exit(num);
 }
 
-int		main(int ac, char **av)
+int		ft_builtins(char **av)
 {
-	// if (!ft_strcmp(av[0], "cd"))
-	char *str[] = {"ls", "..", NULL};
-	ft_cd(str);
+	if (!ft_strcmp(av[0], "cd"))
 		return (ft_cd(av));
-	// else if (!ft_strcmp(av[0], "echo"))
-		// return (ft_echo(av));
-	// else if (!ft_strcmp(av[0], "type"))
-	// 	return (ft_type(av));
-	// else if (!ft_strcmp(av[0], "exit"))
-		// return (ft_exit(av));
-	// return (-1);
+	else if (!ft_strcmp(av[0], "echo"))
+		return (ft_echo(av));
+	else if (!ft_strcmp(av[0], "type"))
+		return (ft_type(av));
+	else if (!ft_strcmp(av[0], "exit"))
+		return (ft_exit(av));
+	return (-1);
 }
